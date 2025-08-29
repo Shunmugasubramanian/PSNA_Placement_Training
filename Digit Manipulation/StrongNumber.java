@@ -3,30 +3,24 @@ public class Solution {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         int n = s.nextInt();
-        int copy = n;
-        int num=0, p = 1, rev = 0;
-        int cubes, count = 0, cubeSum = 0;      
+        int digit, factorial,factSum = 0;
+        int copy = n;       
         while(n > 0) {
+            digit = n % 10;
             n /= 10;
-            p *= 10;
-            count = count + 1;
+            factorial = fact(digit);
+            factSum += factorial;
         }
-        p /= 10;        
-        n = copy;        
-        while(p > 0) {
-            num = n / p;
-            n %= p;
-            p /= 10;
-            cubes = Power(num,count);
-            cubeSum = cubeSum + cubes;
-        }        
-        if(cubeSum == copy)
-            System.out.println("Armstrong number");
+        if(factSum == copy)
+            System.out.println("Strong Number");
         else
-            System.out.println("Not an Armstrong number");
+            System.out.println("Not a strong number");
     }
-  
-    static int Power(int n,int c) {
-            return (int)(Math.pow(n,c));
-    }  
+    
+    static int fact(int n) {
+        if(n == 0 || n == 1) 
+            return n;
+        else
+            return n * fact(n-1);
+    }
 }
